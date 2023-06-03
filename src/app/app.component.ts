@@ -27,4 +27,8 @@ export class AppComponent implements OnInit, DoCheck {
   deleteItem(idItem: number | string) {
     this.purchaseListService.deleteItem(idItem)
   }
+
+  clearPurchaseList() {
+    this.purchaseList = []
+  }
 }

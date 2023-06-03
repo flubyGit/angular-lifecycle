@@ -53,4 +53,5 @@ export class ListaDeCompraService {
     const indexToDeleteItem = this.purchaseItems.findIndex((item, index) => item.id === idItem)
     this.purchaseItems.splice(indexToDeleteItem, 1)
   }
+
 }
