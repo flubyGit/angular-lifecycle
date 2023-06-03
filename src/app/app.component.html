@@ -1,0 +1,17 @@
+<section class="main">
+  <app-input [itemToEdit]="itemToEdit">
+  </app-input>
+  <div class="container">
+    <div class="lista">
+      <h4 class="title-list">Lista de Compras</h4>
+      <div *ngIf="purchaseList.length !== 0; else purchaseListEmpty">
+        <div *ngFor="let item of purchaseList">
+          <app-item [item]="item" (emmiterItemToEdit)="editItem($event)"></app-item>
+        </div>
+      </div>
+      <ng-template #purchaseListEmpty>
+        <small>Sem itens na lista.</small>
+      </ng-template>
+    </div>
+  </div>
+</section>
