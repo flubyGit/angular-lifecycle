@@ -6,18 +6,18 @@ import { Injectable } from '@angular/core';
 })
 export class ListaDeCompraService {
 
-  private listaDeCompra: Item[] = []
+  private purchaseItems: Item[] = []
 
   constructor() {
-    this.listaDeCompra = JSON.parse(localStorage.getItem('purchaseItem') || '[]')
+    this.purchaseItems = JSON.parse(localStorage.getItem('purchaseItem') || '[]')
   }
 
   getListaDeCompra(){
-    return this.listaDeCompra;
+    return this.purchaseItems;
   }
 
   createItem(nameItem: string): Item {
-    const id = this.listaDeCompra.length + 1;
+    const id = this.purchaseItems.length + 1;
     return {
       id,
       nome: nameItem,
@@ -28,7 +28,8 @@ export class ListaDeCompraService {
 
   addItemInPurchaseList(nameItem: string) {
     const item = this.createItem(nameItem);
-    this.listaDeCompra.push(item);
+    this.purchaseItems.push(item);
+    // this.updateItems()
   }
 
   editItemInPurchaseList(oldItem: Item, nameEditingForItem: string) {
@@ -40,6 +41,16 @@ export class ListaDeCompraService {
     }
 
     const id = oldItem.id
-    this.listaDeCompra.splice(Number(id) - 1, 1, itemEditing)
+    this.purchaseItems.splice(Number(id) - 1, 1, itemEditing)
+    // this.updateItems()
+  }
+
+  updateItems(){
+    localStorage.setItem('purchaseItem', JSON.stringify(this.purchaseItems))
+  }
+
+  deleteItem(idItem: number | string) {
+    const indexToDeleteItem = this.purchaseItems.findIndex((item, index) => item.id === idItem)
+    this.purchaseItems.splice(indexToDeleteItem, 1)
   }
 }

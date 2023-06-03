@@ -6,7 +6,11 @@
       <h4 class="title-list">Lista de Compras</h4>
       <div *ngIf="purchaseList.length !== 0; else purchaseListEmpty">
         <div *ngFor="let item of purchaseList">
-          <app-item [item]="item" (emmiterItemToEdit)="editItem($event)"></app-item>
+          <app-item
+            [item]="item"
+            (emmiterItemToEdit)="editItem($event)"
+            (emmiterItemToDelete)="deleteItem($event)"
+          ></app-item>
         </div>
       </div>
       <ng-template #purchaseListEmpty>

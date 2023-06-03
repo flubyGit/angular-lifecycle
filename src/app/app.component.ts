@@ -1,4 +1,4 @@
-import {Component, OnChanges, OnInit} from '@angular/core';
+import {Component, DoCheck, OnInit} from '@angular/core';
 import {Item} from "./interfaces/iItem";
 import {ListaDeCompraService} from "./service/lista-de-compra.service";
 
@@ -7,7 +7,7 @@ import {ListaDeCompraService} from "./service/lista-de-compra.service";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, DoCheck {
   purchaseList!: Item[]
   itemToEdit!: Item
   constructor(private purchaseListService: ListaDeCompraService) { }
@@ -16,7 +16,15 @@ export class AppComponent implements OnInit {
     this.purchaseList = this.purchaseListService.getListaDeCompra();
   }
 
+  ngDoCheck() {
+    this.purchaseListService.updateItems()
+  }
+
   editItem(item: Item) {
     this.itemToEdit = item
+  }
+
+  deleteItem(idItem: number | string) {
+    this.purchaseListService.deleteItem(idItem)
   }
 }
