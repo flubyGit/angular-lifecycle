@@ -49,3 +49,9 @@ Rode o projeto
 
 Se você tiver algum feedback, por favor nos deixe saber por meio de:
 - felipe@zapsign.com.br 
+
+
+
+# Imagens:
+
+![image](https://github.com/flubyGit/angular-lifecycle/assets/49297012/72cf2452-6847-4dce-9564-438e510ab7b5)
